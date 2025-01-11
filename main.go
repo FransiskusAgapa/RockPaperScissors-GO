@@ -1,6 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+	"os/exec"
+	"runtime"
+)
 
 func main() {
 	/* TODO
@@ -12,24 +17,26 @@ func main() {
 	* add scoreboard
 	 */
 	fmt.Println("\n==== Rock Paper Scissors ===")
-	// map of all possile action
+	// map of all possible action
 	actions := map[int]string{
-		1:"Rock",
-		2:"Paper",
-		3:"Scissors",
+		1: "Rock",
+		2: "Paper",
+		3: "Scissors",
 	}
+
+	clearScreen()
 
 	// prompt action option
 	fmt.Print("\n> Pick an action:\n  1. Rock\n  2. Paper\n  3. Scissors\n\n> What's your move:")
 
 	// catch user input
-	var user_move int 
+	var user_move int
 
 	// validate ''user_move''
 	_, err := fmt.Scan(&user_move)
-	
+
 	for err != nil {
-		fmt.Print("\n! Cmon, you gotta input a number\n\n> Try input your move again: ")
+		fmt.Print("\n !Cmon, you gotta pick a number\n\n> Try input your move again: ")
 		_, err := fmt.Scan(&user_move)
 
 		if err == nil {
@@ -37,10 +44,22 @@ func main() {
 		}
 	}
 
-	fmt.Println("\n> Your move is ",actions[user_move])
-	
+	fmt.Println("\n> Your move is ", actions[user_move])
+
 	fmt.Println("\n============================\n")
 }
 
 // GO Primitive Data Type
 // int, string, bool, float, rune
+
+// 'clearScreen' every time new game is played : )
+func clearScreen() {
+	var cmd *exec.Cmd
+	if runtime.GOOS == "windows" {
+		cmd = exec.Command("cmd", "/c", "cls") // Windows
+	} else {
+		cmd = exec.Command("clear") // Linux/macOS
+	}
+	cmd.Stdout = os.Stdout
+	cmd.Run()
+}
