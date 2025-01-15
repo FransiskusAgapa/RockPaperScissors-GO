@@ -32,16 +32,30 @@ func main() {
 	// catch user input
 	var user_move int
 
+	// read error
+	var err error
+
 	// validate ''user_move''
-	_, err := fmt.Scan(&user_move)
+	_, err = fmt.Scan(&user_move)
 
-	for err != nil {
-		fmt.Print("\n !Cmon, you gotta pick a number\n\n> Try input your move again: ")
-		_, err := fmt.Scan(&user_move)
-
-		if err == nil {
+	for err != nil || user_move > len(actions) {
+		if err != nil{
+			fmt.Print("\n ! Cmon, you gotta pick a number\n\n> Try input your move again: ")
+			_, err = fmt.Scan(&user_move)
+		}
+		
+		if err == nil && user_move > len(actions){
+			fmt.Print("\n ! Cmon, you gotta pick a number between 1 to 3\n\n> Try input your move again: ")
+			_, err = fmt.Scan(&user_move)
+		}
+		
+		if err == nil && user_move <= len(actions) {
 			break
 		}
+	}
+
+	if user_move > len(actions){
+		fmt.Println("\n ! only choose between 1 to 3")
 	}
 
 	fmt.Println("\n> Your move is ", actions[user_move])
