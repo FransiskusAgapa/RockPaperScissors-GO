@@ -12,9 +12,6 @@ import (
 func main() {
 	/* TODO
 	* prompt use to enter their name
-	* prompt a set of action to take
-	* randomize an action for computer that'll act as opponent
-	* checking answer and announce the winner
 	* ask if user want to play again
 	* add scoreboard
 	 */
