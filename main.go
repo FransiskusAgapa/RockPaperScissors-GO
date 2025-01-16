@@ -60,7 +60,7 @@ func main() {
 	rand.Seed(time.Now().UnixNano())
 
 	// generate random number
-	computer_move := rand.Intn(4)
+	computer_move := rand.Intn(3) + 1
 
 	fmt.Printf("\n> Your move is: %s\n", actions[player_move])
 	fmt.Printf("  Computer move is: %s\n", actions[computer_move])
