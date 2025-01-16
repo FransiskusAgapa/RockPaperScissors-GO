@@ -92,8 +92,7 @@ func findWinner(player_move string, computer_move string) string {
 	// fmt.Printf("player: %s - opponent: %s", player_move, computer_move)
 	if player_move == computer_move {
 		result = "It is a Draw"
-	}
-	if player_move == "Rock" && computer_move == "Scissors" {
+	} else if player_move == "Rock" && computer_move == "Scissors" {
 		result = "You won!"
 	} else if player_move == "Paper" && computer_move == "Rock" {
 		result = "You won!"
